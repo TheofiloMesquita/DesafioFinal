@@ -1,5 +1,5 @@
 import unittest
-from app import app
+from api.index import app
 import werkzeug
 
 # Patch temporário para adicionar o atributo '__version__' em
