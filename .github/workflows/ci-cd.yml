@@ -22,8 +22,8 @@ jobs:
           docker run -d --name app_test -p 1313:1313 myapp:latest
           sleep 5
           docker logs app_test
-          docker stop app_test
-          docker rm app_test
+          docker stop app_test || true
+          docker rm app_test || true
 
   test:
     name: Run Unit Tests
@@ -38,13 +38,14 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Instalar dependências e pytest
+      - name: Instalar dependências
         run: |
           pip install -r requirements.txt
-          pip install pytest
+          pip install pytest  # pytest não é obrigatório, mas é útil se você deseja rodar testes com pytest também
 
       - name: Rodar testes
-        run: pytest -q
+        run: |
+          python -m unittest discover -s tests
 
   deploy:
     name: Deploy Docker App to Vercel
