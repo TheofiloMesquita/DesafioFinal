@@ -1,4 +1,4 @@
-name: CI-CD Pipeline
+name: CI-CD
 
 on:
   push:
@@ -6,7 +6,6 @@ on:
   pull_request:
 
 jobs:
-
   build:
     name: Build App
     runs-on: ubuntu-latest
@@ -34,7 +33,7 @@ jobs:
   test:
     name: Run Unit Tests
     runs-on: ubuntu-latest
-    needs: build
+    needs: build  # Espera o job 'build' ser completado antes de rodar
     steps:
       - name: Checkout código
         uses: actions/checkout@v4
@@ -56,7 +55,7 @@ jobs:
   deploy:
     name: Deploy to Vercel
     runs-on: ubuntu-latest
-    needs: test
+    needs: test  # Espera o job 'test' ser completado antes de rodar
     steps:
       - name: Checkout código
         uses: actions/checkout@v4
