@@ -38,14 +38,9 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Instalar dependências
-        run: |
-          pip install -r requirements.txt
-          pip install pytest  # pytest não é obrigatório, mas é útil se você deseja rodar testes com pytest também
-
       - name: Rodar testes
         run: |
-          python -m unittest discover -s tests
+          docker-compose run api python -m unittest discover
 
   deploy:
     name: Deploy Docker App to Vercel
