@@ -70,14 +70,7 @@ jobs:
             --scope=$VERCEL_ORG_ID
 
       - name: Build do Docker no Vercel
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-        run: |
-          vercel build --no-build \
-            --token=$VERCEL_TOKEN \
-            --scope=$VERCEL_ORG_ID
+        run: echo "Step skipped - Vercel no longer supports docker builds"
 
       - name: Deploy Docker para Produção no Vercel
         env:
